@@ -94,13 +94,13 @@ if [ -n "${MAC_OS_SIGNING_KEY_ID:-""}" ]; then
     xattr -cr "$PROJECT.app";
     codesign --force --options=runtime -s "$MAC_OS_SIGNING_KEY_ID" --deep -v "$PROJECT.app";
     /usr/bin/ditto -c -k --keepParent "$PROJECT.app" "$PROJECT.zip";
-    xcrun altool \
-        --notarize-app \
-        --primary-bundle-id "$MAC_OS_SIGNING_BUNDLE_ID" \
-        --username "$MAC_OS_SIGNING_USERNAME" \
+    xcrun notarytool \
+        submit \
+        --apple-id "$MAC_OS_SIGNING_USERNAME" \
+        --team-id "$MAC_OS_SIGNING_TEAM_ID" \
         --password "$MAC_OS_SIGNING_PASSWORD" \
-        --asc-provider "$MAC_OS_SIGNING_ASC_PROVIDER" \
-        --file "$PROJECT.zip";
+        --wait \
+        "$PROJECT.zip";
 fi
 
 # build DMG
