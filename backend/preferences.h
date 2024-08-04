@@ -4,6 +4,9 @@
 #include <QObject>
 #include <QSettings>
 
+// Only intended to run from source, no releases will be made or hosted
+#define DISABLE_APPLICATION_UPDATES
+
 class Preferences : public QObject
 {
     Q_OBJECT
