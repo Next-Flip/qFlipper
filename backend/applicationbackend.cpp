@@ -34,7 +34,7 @@ using namespace Zero;
 ApplicationBackend::ApplicationBackend(QObject *parent):
     QObject(parent),
     m_deviceRegistry(new DeviceRegistry(this)),
-    m_firmwareUpdateRegistry(new FirmwareUpdateRegistry("https://update.flipperzero.one/firmware/directory.json", this)),
+    m_firmwareUpdateRegistry(new FirmwareUpdateRegistry("https://up.momentum-fw.dev/firmware/directory.json", this)),
     m_screenStreamer(new ScreenStreamer(this)),
     m_virtualDisplay(new VirtualDisplay(this)),
     m_fileManager(new FileManager(this)),
