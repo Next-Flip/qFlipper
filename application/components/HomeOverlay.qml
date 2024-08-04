@@ -326,7 +326,8 @@ AbstractOverlay {
                 str = "Unknown";
             }
 
-            return "%1 %2".arg(str).arg(Backend.latestFirmwareVersion.number.split("-")[0]);
+            let splitVersion = Backend.latestFirmwareVersion.number.split("-");
+            return "%1 %2".arg(str).arg(splitVersion[splitVersion.length - 1]);
         }
 
         onTriggered: changelogDialog.open()
