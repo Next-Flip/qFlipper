@@ -249,13 +249,13 @@ AbstractOverlay {
 
         linkColor: {
             if(Preferences.updateChannel === "development") {
-                return Theme.color.lightred2;
+                return "blueviolet";
             } else if(Preferences.updateChannel === "release-candidate") {
                 return "blueviolet";
             } else if(Preferences.updateChannel === "release") {
                 return Theme.color.lightgreen;
             } else {
-                return Theme.color.lightorange2;
+                return Theme.color.lightred2;
             }
         }
 
@@ -323,7 +323,7 @@ AbstractOverlay {
             } else if(Preferences.updateChannel === "release") {
                 str = "Release";
             } else {
-                str = "Unknown";
+                str = Preferences.updateChannel.replace(/^wip-/, '');
             }
 
             let splitVersion = Backend.latestFirmwareVersion.number.split("-");
