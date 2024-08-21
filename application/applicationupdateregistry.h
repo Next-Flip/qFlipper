@@ -10,6 +10,7 @@ public:
 
 private:
     const QString updateChannel() const override;
+    void setUpdateChannel(const QString &newUpdateChannel) const override;
 };
 
 

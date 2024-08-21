@@ -14,3 +14,8 @@ const QString ApplicationUpdateRegistry::updateChannel() const
 {
     return globalPrefs->applicationUpdateChannel();
 }
+
+void ApplicationUpdateRegistry::setUpdateChannel(const QString &newUpdateChannel) const
+{
+    globalPrefs->setApplicationUpdateChannel(newUpdateChannel);
+}

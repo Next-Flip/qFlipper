@@ -53,6 +53,7 @@ public slots:
 
 private:
     virtual const QString updateChannel() const = 0;
+    virtual void setUpdateChannel(const QString &newUpdateChannel) const = 0;
     void setState(State newState);
 
     QString m_directoryUrl;

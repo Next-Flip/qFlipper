@@ -14,3 +14,8 @@ const QString FirmwareUpdateRegistry::updateChannel() const
 {
     return globalPrefs->firmwareUpdateChannel();
 }
+
+void FirmwareUpdateRegistry::setUpdateChannel(const QString &newUpdateChannel) const
+{
+    globalPrefs->setFirmwareUpdateChannel(newUpdateChannel);
+}

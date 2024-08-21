@@ -76,6 +76,10 @@ void UpdateRegistry::fillFromJson(const QByteArray &text)
     } catch(std::runtime_error &e) {
         qCCritical(CATEGORY_UPDATES) << "Failed to parse update information:" << e.what();
     }
+
+    if(!m_channels.contains(updateChannel())) {
+        setUpdateChannel(QStringLiteral("release"));
+    }
 }
 
 const QStringList UpdateRegistry::channelNames() const
