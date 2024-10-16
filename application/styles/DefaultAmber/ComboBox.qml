@@ -73,7 +73,7 @@ T.ComboBox {
 
     font.pixelSize: 32
     font.family: "HaxrCorp 4089"
-    font.capitalization: Font.AllUppercase
+    font.capitalization: Font.Capitalize
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)

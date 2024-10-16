@@ -8,7 +8,7 @@ import QFlipper 1.0
 Item {
     id: container
 
-    implicitWidth: 318
+    implicitWidth: 360
     implicitHeight: control.implicitHeight + verticalPadding * 2
 
     readonly property int horizontalPadding: Math.floor((container.implicitWidth - control.implicitWidth) / 2)
