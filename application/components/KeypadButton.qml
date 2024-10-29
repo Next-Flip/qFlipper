@@ -8,11 +8,13 @@ Item {
     signal shortPress
     signal longPress
     signal repeat
+    signal ascii
 
     property int padding: 0
     property alias icon: button.icon
     property alias iconPath: button.iconPath
     property alias iconName: button.iconName
+    property bool triggeredByKeyboard: false
 
     width: button.implicitWidth + padding * 2
     height: button.implicitHeight + padding * 2
@@ -20,6 +22,7 @@ Item {
     function setPressed() {
         button.down = true;
         onButtonPressed();
+        control.triggeredByKeyboard = true;
     }
 
     function setReleased() {
@@ -28,7 +31,7 @@ Item {
     }
 
     function onButtonPressed() {
-        control.pressed();
+        control.triggeredByKeyboard = false;
 
         if(!longTimer.running) {
             longTimer.start();
@@ -40,11 +43,17 @@ Item {
     }
 
     function onButtonReleased() {
-        releaseTimer.start();
-
         if(longTimer.running) {
             longTimer.stop();
-            control.shortPress();
+            if(control.triggeredByKeyboard) {
+                control.ascii();
+            } else {
+                control.pressed();
+                control.shortPress();
+                releaseTimer.start();
+            }
+        } else {
+            releaseTimer.start();
         }
 
         if(repeatTimer.running) {
@@ -52,7 +61,9 @@ Item {
         }
     }
 
-    onLongPress: {
+    function onLongPress() {
+        control.pressed();
+        control.longPress()
         if(!repeatTimer.running) {
             repeatTimer.start();
         }
@@ -77,7 +88,7 @@ Item {
         id: longTimer
         repeat: false
         interval: 350
-        onTriggered: control.longPress()
+        onTriggered: onLongPress()
     }
 
     Timer {

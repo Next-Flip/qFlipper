@@ -49,6 +49,7 @@ Item {
                 onShortPress: inputEvent(InputEvent.Up, InputEvent.Short)
                 onLongPress: inputEvent(InputEvent.Up, InputEvent.Long)
                 onRepeat: inputEvent(InputEvent.Up, InputEvent.Repeat)
+                onAscii: asciiEvent(AsciiEvent.DC1)
             }
 
             KeypadButton {
@@ -67,6 +68,7 @@ Item {
                 onShortPress: inputEvent(InputEvent.Left, InputEvent.Short)
                 onLongPress: inputEvent(InputEvent.Left, InputEvent.Long)
                 onRepeat: inputEvent(InputEvent.Left, InputEvent.Repeat)
+                onAscii: asciiEvent(AsciiEvent.DC4)
             }
 
             KeypadButton {
@@ -82,6 +84,7 @@ Item {
                 onShortPress: inputEvent(InputEvent.Ok, InputEvent.Short)
                 onLongPress: inputEvent(InputEvent.Ok, InputEvent.Long)
                 onRepeat: inputEvent(InputEvent.Ok, InputEvent.Repeat)
+                onAscii: asciiEvent(AsciiEvent.CR)
             }
 
             KeypadButton {
@@ -100,6 +103,7 @@ Item {
                 onShortPress: inputEvent(InputEvent.Right, InputEvent.Short)
                 onLongPress: inputEvent(InputEvent.Right, InputEvent.Long)
                 onRepeat: inputEvent(InputEvent.Right, InputEvent.Repeat)
+                onAscii: asciiEvent(AsciiEvent.DC3)
             }
 
             KeypadButton {
@@ -119,6 +123,7 @@ Item {
                 onShortPress: inputEvent(InputEvent.Down, InputEvent.Short)
                 onLongPress: inputEvent(InputEvent.Down, InputEvent.Long)
                 onRepeat: inputEvent(InputEvent.Down, InputEvent.Repeat)
+                onAscii: asciiEvent(AsciiEvent.DC2)
             }
         }
     }
@@ -139,15 +144,19 @@ Item {
         onShortPress: inputEvent(InputEvent.Back, InputEvent.Short)
         onLongPress: inputEvent(InputEvent.Back, InputEvent.Long)
         onRepeat: inputEvent(InputEvent.Back, InputEvent.Repeat)
+        onAscii: asciiEvent(AsciiEvent.BS)
     }
 
     Keys.onPressed: function(event) {
-        if(event.isAutoRepeat)
-            return;
-
         const button = findButton(event.key);
 
-        if(button === null)
+        if(button === null) {
+            const ascii = findAscii(event);
+            if(ascii !== null) asciiEvent(ascii);
+            return;
+        }
+
+        if(event.isAutoRepeat)
             return;
 
         button.setPressed();
@@ -160,48 +169,42 @@ Item {
 
         const button = findButton(event.key);
 
-        if(button === null) {
-             // Temporary until better logic is in place
-            asciiEvent(event.text.charCodeAt(0));
+        if(button === null)
             return;
-        }
 
         button.setReleased();
         event.accepted = true;
     }
 
     function findButton(key) {
-        return null; // Temporary until better logic is in place
         switch(key) {
         case Qt.Key_Left:
-        case Qt.Key_H:
-        case Qt.Key_A:
             return buttonLeft;
         case Qt.Key_Right:
-        case Qt.Key_L:
-        case Qt.Key_D:
             return buttonRight;
         case Qt.Key_Up:
-        case Qt.Key_K:
-        case Qt.Key_W:
             return buttonUp;
         case Qt.Key_Down:
-        case Qt.Key_J:
-        case Qt.Key_S:
             return buttonDown;
         case Qt.Key_Enter:
         case Qt.Key_Return:
-        case Qt.Key_Space:
-        case Qt.Key_E:
-        case Qt.Key_Z:
             return buttonOk;
-        case Qt.Key_Q:
-        case Qt.Key_X:
-        case Qt.Key_Escape:
         case Qt.Key_Backspace:
             return buttonBack;
         default:
             return null;
+        }
+    }
+
+    function findAscii(event) {
+        const charCode = event.text.charCodeAt(0);
+        switch(event.key) {
+        default:
+            if(event.count && charCode) {
+                return charCode;
+            } else {
+                return null;
+            }
         }
     }
 
