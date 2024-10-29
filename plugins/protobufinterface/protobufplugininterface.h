@@ -32,6 +32,7 @@ public:
     virtual const QByteArray guiStopScreenStream(uint32_t id) const = 0;
     virtual const QByteArray guiScreenFrame(uint32_t id, const QByteArray screenData = QByteArray()) const = 0;
     virtual const QByteArray guiSendInput(uint32_t id, int key, int type) const = 0;
+    virtual const QByteArray guiSendAscii(uint32_t id, int value) const = 0;
     virtual const QByteArray guiStartVirtualDisplay(uint32_t id, const QByteArray screenData = QByteArray()) const = 0;
     virtual const QByteArray guiStopVirtualDisplay(uint32_t id) const = 0;
 

@@ -27,6 +27,12 @@ public:
     GuiSendInputRequest(uint32_t id, PB_Gui_InputKey key, PB_Gui_InputType type);
 };
 
+class GuiSendAsciiRequest : public MainRequest
+{
+public:
+    GuiSendAsciiRequest(uint32_t id, uint8_t value);
+};
+
 class GuiStartVirtualDisplayRequest : public MainRequest
 {
 public:

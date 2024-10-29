@@ -31,6 +31,7 @@ public:
     const QByteArray guiStopScreenStream(uint32_t id) const override;
     const QByteArray guiScreenFrame(uint32_t id, const QByteArray screenData) const override;
     const QByteArray guiSendInput(uint32_t id, int key, int type) const override;
+    const QByteArray guiSendAscii(uint32_t id, int value) const override;
     const QByteArray guiStartVirtualDisplay(uint32_t id, const QByteArray screenData) const override;
     const QByteArray guiStopVirtualDisplay(uint32_t id) const override;
 

@@ -99,6 +99,11 @@ const QByteArray ProtobufPlugin::guiSendInput(uint32_t id, int key, int type) co
     return GuiSendInputRequest(id, (PB_Gui_InputKey)key, (PB_Gui_InputType)type).encode();
 }
 
+const QByteArray ProtobufPlugin::guiSendAscii(uint32_t id, int value) const
+{
+    return GuiSendAsciiRequest(id, (uint8_t)value).encode();
+}
+
 const QByteArray ProtobufPlugin::guiStartVirtualDisplay(uint32_t id, const QByteArray screenData) const
 {
     return GuiStartVirtualDisplayRequest(id, screenData).encode();

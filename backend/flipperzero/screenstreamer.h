@@ -35,6 +35,7 @@ public:
 
     void setDevice(FlipperZero *device);
     Q_INVOKABLE void sendInputEvent(InputEvent::Key key, InputEvent::Type type);
+    Q_INVOKABLE void sendAsciiEvent(int value);
 
     bool isEnabled() const;
     void setEnabled(bool set);
