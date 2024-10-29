@@ -35,10 +35,6 @@ Item {
         if(!longTimer.running) {
             longTimer.start();
         }
-
-        if(releaseTimer.running) {
-           releaseTimer.stop();
-        }
     }
 
     function onButtonReleased() {
@@ -49,10 +45,10 @@ Item {
             } else {
                 control.pressed();
                 control.shortPress();
-                releaseTimer.start();
+                control.released()
             }
         } else {
-            releaseTimer.start();
+            control.released()
         }
 
         if(repeatTimer.running) {
@@ -74,13 +70,6 @@ Item {
 
         onPressed: onButtonPressed(false)
         onReleased: onButtonReleased()
-    }
-
-    Timer {
-        id: releaseTimer
-        repeat: false
-        interval: 1
-        onTriggered: control.released()
     }
 
     Timer {
