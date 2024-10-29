@@ -19,6 +19,7 @@
 #include "preferences.h"
 #include "backenderror.h"
 #include "inputevent.h"
+#include "asciievent.h"
 #include "logger.h"
 
 Q_LOGGING_CATEGORY(LOG_APP, "APP")
@@ -191,6 +192,7 @@ void Application::initQmlTypes()
 
     qmlRegisterUncreatableType<BackendError>("QFlipper", 1, 0, "BackendError", QStringLiteral("This class is only a enum container"));
     qmlRegisterUncreatableType<InputEvent>("QFlipper", 1, 0, "InputEvent", QStringLiteral("This class is only a enum container"));
+    qmlRegisterUncreatableType<AsciiEvent>("QFlipper", 1, 0, "AsciiEvent", QStringLiteral("This class is only a enum container"));
     qmlRegisterUncreatableType<ApplicationBackend>("QFlipper", 1, 0, "ApplicationBackend", QStringLiteral("This class is meant to be created from c++"));
     qmlRegisterUncreatableType<ApplicationUpdater>("QFlipper", 1, 0, "ApplicationUpdater", QStringLiteral("This class is meant to be created from c++"));
 

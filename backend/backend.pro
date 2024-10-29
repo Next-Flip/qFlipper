@@ -212,6 +212,7 @@ HEADERS += \
     gzipcompressor.h \
     gzipuncompressor.h \
     inputevent.h \
+    asciievent.h \
     logger.h \
     preferences.h \
     regioninfo.h \

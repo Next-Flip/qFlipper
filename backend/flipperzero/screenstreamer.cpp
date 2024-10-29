@@ -84,7 +84,7 @@ void ScreenStreamer::sendInputEvent(InputEvent::Key key, InputEvent::Type type)
     });
 }
 
-void ScreenStreamer::sendAsciiEvent(int value)
+void ScreenStreamer::sendAsciiEvent(AsciiEvent::Value value)
 {
     auto *operation = m_device->rpc()->guiSendAscii(value);
 

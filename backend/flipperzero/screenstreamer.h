@@ -5,6 +5,7 @@
 #include <QByteArray>
 
 #include "inputevent.h"
+#include "asciievent.h"
 #include "screenframe.h"
 
 namespace Flipper {
@@ -35,7 +36,7 @@ public:
 
     void setDevice(FlipperZero *device);
     Q_INVOKABLE void sendInputEvent(InputEvent::Key key, InputEvent::Type type);
-    Q_INVOKABLE void sendAsciiEvent(int value);
+    Q_INVOKABLE void sendAsciiEvent(AsciiEvent::Value value);
 
     bool isEnabled() const;
     void setEnabled(bool set);
