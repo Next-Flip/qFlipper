@@ -75,6 +75,10 @@ AbstractOverlay {
             Backend.screenStreamer.sendInputEvent(key, type);
         }
 
+        onAsciiEvent: function(value) {
+            Backend.screenStreamer.sendAsciiEvent(value);
+        }
+
         // Prevent focus loss
         onEnabledChanged: focus = enabled
         onActiveFocusChanged: if(!activeFocus) focus = enabled

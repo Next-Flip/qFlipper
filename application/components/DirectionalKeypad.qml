@@ -9,6 +9,7 @@ Item {
     id: control
 
     signal inputEvent(var key, var type)
+    signal asciiEvent(var value)
 
     property int spacing: 15
 
@@ -159,14 +160,18 @@ Item {
 
         const button = findButton(event.key);
 
-        if(button === null)
+        if(button === null) {
+             // Temporary until better logic is in place
+            asciiEvent(event.text.charCodeAt(0));
             return;
+        }
 
         button.setReleased();
         event.accepted = true;
     }
 
     function findButton(key) {
+        return null; // Temporary until better logic is in place
         switch(key) {
         case Qt.Key_Left:
         case Qt.Key_H:
