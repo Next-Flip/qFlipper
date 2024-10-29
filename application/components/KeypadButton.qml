@@ -21,8 +21,7 @@ Item {
 
     function setPressed() {
         button.down = true;
-        onButtonPressed();
-        control.triggeredByKeyboard = true;
+        onButtonPressed(true);
     }
 
     function setReleased() {
@@ -30,8 +29,8 @@ Item {
         onButtonReleased();
     }
 
-    function onButtonPressed() {
-        control.triggeredByKeyboard = false;
+    function onButtonPressed(triggeredByKeyboard) {
+        control.triggeredByKeyboard = triggeredByKeyboard;
 
         if(!longTimer.running) {
             longTimer.start();
@@ -73,7 +72,7 @@ Item {
         id: button
         anchors.centerIn: parent
 
-        onPressed: onButtonPressed()
+        onPressed: onButtonPressed(false)
         onReleased: onButtonReleased()
     }
 
