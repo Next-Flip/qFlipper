@@ -73,7 +73,7 @@ T.ComboBox {
 
     font.pixelSize: 32
     font.family: "HaxrCorp 4089"
-    font.capitalization: Font.Capitalize
+    font.capitalization: Font.AllUppercase
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
@@ -123,7 +123,7 @@ T.ComboBox {
         topPadding: 6 - control.padding
         bottomPadding: 6 - control.padding
 
-        text: control.displayText
+        text: control.displayText.replace(/^wip-/, '')
         font: control.font
 
         color: !control.enabled ? foregroundColor.disabled : control.down ? foregroundColor.down :

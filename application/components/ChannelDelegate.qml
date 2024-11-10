@@ -31,8 +31,7 @@ ItemDelegate {
         }
 
         TextLabel {
-            text: control.text
-            font.capitalization: Font.Capitalize
+            text: control.text.replace(/^wip-/, '')
             color: control.down ? Theme.color.darkorange1 : control.hovered ? Theme.color.lightorange1 : Theme.color.lightorange2
             Layout.fillWidth: true
         }
