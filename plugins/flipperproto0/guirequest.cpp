@@ -33,6 +33,13 @@ GuiSendInputRequest::GuiSendInputRequest(uint32_t id, PB_Gui_InputKey key, PB_Gu
     content.type = type;
 }
 
+GuiSendAsciiRequest::GuiSendAsciiRequest(uint32_t id, uint8_t value):
+    MainRequest(id, PB_Main_gui_send_ascii_event_request_tag)
+{
+    auto &content = m_message.content.gui_send_ascii_event_request;
+    content.value = value;
+}
+
 GuiStartVirtualDisplayRequest::GuiStartVirtualDisplayRequest(uint32_t id, const QByteArray &screenData):
     MainRequest(id, PB_Main_gui_start_virtual_display_request_tag)
 {

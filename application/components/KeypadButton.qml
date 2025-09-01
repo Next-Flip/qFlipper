@@ -8,18 +8,20 @@ Item {
     signal shortPress
     signal longPress
     signal repeat
+    signal ascii
 
     property int padding: 0
     property alias icon: button.icon
     property alias iconPath: button.iconPath
     property alias iconName: button.iconName
+    property bool triggeredByKeyboard: false
 
     width: button.implicitWidth + padding * 2
     height: button.implicitHeight + padding * 2
 
     function setPressed() {
         button.down = true;
-        onButtonPressed();
+        onButtonPressed(true);
     }
 
     function setReleased() {
@@ -27,24 +29,26 @@ Item {
         onButtonReleased();
     }
 
-    function onButtonPressed() {
-        control.pressed();
+    function onButtonPressed(triggeredByKeyboard) {
+        control.triggeredByKeyboard = triggeredByKeyboard;
 
         if(!longTimer.running) {
             longTimer.start();
         }
-
-        if(releaseTimer.running) {
-           releaseTimer.stop();
-        }
     }
 
     function onButtonReleased() {
-        releaseTimer.start();
-
         if(longTimer.running) {
             longTimer.stop();
-            control.shortPress();
+            if(control.triggeredByKeyboard) {
+                control.ascii();
+            } else {
+                control.pressed();
+                control.shortPress();
+                control.released()
+            }
+        } else {
+            control.released()
         }
 
         if(repeatTimer.running) {
@@ -52,7 +56,9 @@ Item {
         }
     }
 
-    onLongPress: {
+    function onLongPress() {
+        control.pressed();
+        control.longPress()
         if(!repeatTimer.running) {
             repeatTimer.start();
         }
@@ -62,22 +68,15 @@ Item {
         id: button
         anchors.centerIn: parent
 
-        onPressed: onButtonPressed()
+        onPressed: onButtonPressed(false)
         onReleased: onButtonReleased()
-    }
-
-    Timer {
-        id: releaseTimer
-        repeat: false
-        interval: 1
-        onTriggered: control.released()
     }
 
     Timer {
         id: longTimer
         repeat: false
         interval: 350
-        onTriggered: control.longPress()
+        onTriggered: onLongPress()
     }
 
     Timer {

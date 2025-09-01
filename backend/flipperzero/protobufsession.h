@@ -37,6 +37,7 @@ class GuiStartScreenStreamOperation;
 class GuiStopScreenStreamOperation;
 class GuiScreenFrameOperation;
 class GuiSendInputOperation;
+class GuiSendAsciiOperation;
 class GuiStartVirtualDisplayOperation;
 class GuiStopVirtualDisplayOperation;
 
@@ -92,6 +93,7 @@ public:
     GuiStartVirtualDisplayOperation *guiStartVirtualDisplay(const QByteArray &screenData = QByteArray());
     GuiStopVirtualDisplayOperation *guiStopVirtualDisplay();
     GuiSendInputOperation *guiSendInput(int key, int type);
+    GuiSendAsciiOperation *guiSendAscii(int value);
     GuiScreenFrameOperation *guiSendScreenFrame(const QByteArray &screenData);
 
     PropertyGetOperation *propertyGet(const QByteArray &key);

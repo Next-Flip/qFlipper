@@ -10,6 +10,7 @@
 #include "rpc/guistartscreenstreamoperation.h"
 #include "rpc/guistopscreenstreamoperation.h"
 #include "rpc/guisendinputoperation.h"
+#include "rpc/guisendasciioperation.h"
 
 #include "pixmaps/default.h"
 
@@ -79,6 +80,18 @@ void ScreenStreamer::sendInputEvent(InputEvent::Key key, InputEvent::Type type)
         if(operation->isError()) {
             setStreamState(Stopped);
             qCDebug(CATEGORY_SCREEN).noquote() << "Failed to send input event: " << operation->errorString();
+        }
+    });
+}
+
+void ScreenStreamer::sendAsciiEvent(AsciiEvent::Value value)
+{
+    auto *operation = m_device->rpc()->guiSendAscii(value);
+
+    connect(operation, &AbstractOperation::finished, this, [=]() {
+        if(operation->isError()) {
+            setStreamState(Stopped);
+            qCDebug(CATEGORY_SCREEN).noquote() << "Failed to send ascii event: " << operation->errorString();
         }
     });
 }

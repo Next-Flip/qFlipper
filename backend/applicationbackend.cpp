@@ -420,6 +420,7 @@ void ApplicationBackend::registerMetaTypes()
 
     qRegisterMetaType<InputEvent::Key>();
     qRegisterMetaType<InputEvent::Type>();
+    qRegisterMetaType<AsciiEvent::Value>();
 }
 
 #if QT_VERSION < 0x060000

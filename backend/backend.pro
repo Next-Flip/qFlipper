@@ -26,6 +26,7 @@ SOURCES += \
     flipperzero/rpc/abstractstorageoperation.cpp \
     flipperzero/rpc/guiscreenframeoperation.cpp \
     flipperzero/rpc/guisendinputoperation.cpp \
+    flipperzero/rpc/guisendasciioperation.cpp \
     flipperzero/rpc/guistartscreenstreamoperation.cpp \
     flipperzero/rpc/guistartvirtualdisplayoperation.cpp \
     flipperzero/rpc/guistopscreenstreamoperation.cpp \
@@ -137,6 +138,7 @@ HEADERS += \
     flipperzero/rpc/abstractstorageoperation.h \
     flipperzero/rpc/guiscreenframeoperation.h \
     flipperzero/rpc/guisendinputoperation.h \
+    flipperzero/rpc/guisendasciioperation.h \
     flipperzero/rpc/guistartscreenstreamoperation.h \
     flipperzero/rpc/guistartvirtualdisplayoperation.h \
     flipperzero/rpc/guistopscreenstreamoperation.h \
@@ -210,6 +212,7 @@ HEADERS += \
     gzipcompressor.h \
     gzipuncompressor.h \
     inputevent.h \
+    asciievent.h \
     logger.h \
     preferences.h \
     regioninfo.h \

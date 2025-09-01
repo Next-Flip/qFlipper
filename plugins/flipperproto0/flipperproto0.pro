@@ -21,6 +21,7 @@ HEADERS += \
     mainrequest.h \
     mainresponse.h \
     messages/application.pb.h \
+    messages/desktop.pb.h \
     messages/flipper.pb.h \
     messages/gui.pb.h \
     messages/property.pb.h \
@@ -45,6 +46,7 @@ SOURCES += \
     mainrequest.cpp \
     mainresponse.cpp \
     messages/application.pb.c \
+    messages/desktop.pb.c \
     messages/flipper.pb.c \
     messages/gpio.pb.c \
     messages/gui.pb.c \

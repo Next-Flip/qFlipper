@@ -32,6 +32,7 @@
 #include "rpc/systemprotobufversionoperation.h"
 
 #include "rpc/guisendinputoperation.h"
+#include "rpc/guisendasciioperation.h"
 #include "rpc/guiscreenframeoperation.h"
 #include "rpc/guistartscreenstreamoperation.h"
 #include "rpc/guistopscreenstreamoperation.h"
@@ -212,6 +213,11 @@ GuiStopVirtualDisplayOperation *ProtobufSession::guiStopVirtualDisplay()
 GuiSendInputOperation *ProtobufSession::guiSendInput(int key, int type)
 {
     return enqueueOperation(new GuiSendInputOperation(getAndIncrementCounter(), key, type, this));
+}
+
+GuiSendAsciiOperation *ProtobufSession::guiSendAscii(int value)
+{
+    return enqueueOperation(new GuiSendAsciiOperation(getAndIncrementCounter(), value, this));
 }
 
 GuiScreenFrameOperation *ProtobufSession::guiSendScreenFrame(const QByteArray &screenData)
