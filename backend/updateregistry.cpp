@@ -86,9 +86,15 @@ const QStringList UpdateRegistry::channelNames() const
 {
     auto names = m_channels.keys();
 
+    // Move Release channel first
+    auto releaseIndex = names.indexOf("release");
+    if(releaseIndex != -1) {
+        names.move(releaseIndex, 0);
+    }
     // Move Development channel after release
-    if(names.first().startsWith(QStringLiteral("dev"))) {
-        names.move(0, 1);
+    auto developmentIndex = names.indexOf("development");
+    if(developmentIndex != -1) {
+        names.move(developmentIndex, 1);
     }
 
     return names;

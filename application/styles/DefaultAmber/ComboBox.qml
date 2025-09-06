@@ -123,7 +123,7 @@ T.ComboBox {
         topPadding: 6 - control.padding
         bottomPadding: 6 - control.padding
 
-        text: control.displayText.replace(/^wip-/, '')
+        text: control.displayText.replace(/^pr\d+:/, '')
         font: control.font
 
         color: !control.enabled ? foregroundColor.disabled : control.down ? foregroundColor.down :
