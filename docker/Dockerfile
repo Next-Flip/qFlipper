@@ -35,11 +35,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y \
     libopengl-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN echo 'deb http://download.opensuse.org/repositories/home:drunkbatya/xUbuntu_20.04/ /' \
-    | tee /etc/apt/sources.list.d/home:drunkbatya.list
-RUN curl -fsSL https://download.opensuse.org/repositories/home:drunkbatya/xUbuntu_20.04/Release.key \
-    | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_drunkbatya.gpg > /dev/null
-
 RUN DEBIAN_FRONTEND=noninteractive apt update
 RUN DEBIAN_FRONTEND=noninteractive apt -y install \
     qtbase6-static \
