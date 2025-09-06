@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 WORKDIR /project
 
@@ -37,15 +37,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y \
 
 RUN DEBIAN_FRONTEND=noninteractive apt update
 RUN DEBIAN_FRONTEND=noninteractive apt -y install \
-    qtbase6-static \
-    qtwayland6-static \
-    qt3d6-static \
-    qtdeclarative6-static \
-    qtserialport6-static \
-    qtshadertools6-static \
-    qtsvg6-static \
-    qttools6-static \
-    qt5compat6-static
+    qt6-base-dev \
+    qt6-wayland-dev \
+    qt6-3d-dev \
+    qt6-declarative-dev \
+    qt6-serialport-dev \
+    qt6-shadertools-dev \
+    qt6-svg-dev \
+    qt6-tools-dev \
+    qt6-5compat-dev
 
 RUN wget https://update.flipperzero.one/builds/misc/linuxdeploy-x86_64-29092022.AppImage \
     -O /usr/bin/linuxdeploy && chmod +x /usr/bin/linuxdeploy
