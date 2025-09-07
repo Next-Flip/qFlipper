@@ -6,7 +6,7 @@ TARGET="qFlipper"
 BUILDDIR="build"
 APPDIR_PREFIX="$PWD/$BUILDDIR/AppDir/usr"
 
-LIBSSL1_OVERRIDE="$(ldconfig -p | grep x86-64 | grep -oP '/[^\s]+/libssl.so.1.1' | head -n1)"
+LIBSSL3_OVERRIDE="$(ldconfig -p | grep x86-64 | grep -oP '/[^\s]+/libssl.so.3' | head -n1)"
 
 LIBWAYLAND_EXCLUDE="libwayland*"
 LIBXCB_EXCLUDE="libxcb*"
@@ -24,7 +24,7 @@ make install
 
 linuxdeploy --appdir=AppDir -o appimage \
     --custom-apprun="../installer-assets/appimage/AppRun" \
-    --library="$LIBSSL1_OVERRIDE" \
+    --library="$LIBSSL3_OVERRIDE" \
     --exclude-library="$LIBWAYLAND_EXCLUDE" \
     --exclude-library="$LIBXCB_EXCLUDE" \
     --exclude-library="$LIBXKB_EXCLUDE" \
