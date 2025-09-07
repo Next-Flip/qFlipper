@@ -19,5 +19,8 @@ make install
 
 linuxdeploy --appdir=AppDir -o appimage \
     --custom-apprun="../installer-assets/appimage/AppRun" \
-    --library="$LIBSSL3_OVERRIDE" \
-    --plugin qt
+    --library="$LIBSSL3_OVERRIDE"
+
+linuxdeploy-plugin-qt --appdir=AppDir -o appimage \
+    --custom-apprun="../installer-assets/appimage/AppRun" \
+    --library="$LIBSSL3_OVERRIDE"
