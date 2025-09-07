@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 WORKDIR /project
 
@@ -10,6 +10,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y \
     pkg-config \
     git \
     curl \
+    fuse \
     libfuse2 \
     zlib1g-dev \
     libusb-1.0-0-dev \
@@ -35,34 +36,26 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y \
     libopengl-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN echo 'deb http://download.opensuse.org/repositories/home:drunkbatya/xUbuntu_20.04/ /' \
-    | tee /etc/apt/sources.list.d/home:drunkbatya.list
-RUN curl -fsSL https://download.opensuse.org/repositories/home:drunkbatya/xUbuntu_20.04/Release.key \
-    | gpg --dearmor | tee /etc/apt/trusted.gpg.d/home_drunkbatya.gpg > /dev/null
-
 RUN DEBIAN_FRONTEND=noninteractive apt update
 RUN DEBIAN_FRONTEND=noninteractive apt -y install \
-    qtbase6-static \
-    qtwayland6-static \
-    qt3d6-static \
-    qtdeclarative6-static \
-    qtserialport6-static \
-    qtshadertools6-static \
-    qtsvg6-static \
-    qttools6-static \
-    qt5compat6-static
+    qt6-base-dev \
+    qt6-wayland-dev \
+    qt6-3d-dev \
+    qt6-declarative-dev \
+    qt6-serialport-dev \
+    qt6-shadertools-dev \
+    qt6-svg-dev \
+    qt6-tools-dev \
+    qt6-5compat-dev \
+    qml6-module-*
 
-RUN wget https://update.flipperzero.one/builds/misc/linuxdeploy-x86_64-29092022.AppImage \
+RUN wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20250213-2/linuxdeploy-x86_64.AppImage \
     -O /usr/bin/linuxdeploy && chmod +x /usr/bin/linuxdeploy
 
-RUN wget https://update.flipperzero.one/builds/misc/linuxdeploy-plugin-qt-x86_64-29092022.AppImage \
+RUN wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/1-alpha-20250213-1/linuxdeploy-plugin-qt-x86_64.AppImage \
     -O /usr/bin/linuxdeploy-plugin-qt && chmod +x /usr/bin/linuxdeploy-plugin-qt
 
 RUN git config --global --replace-all safe.directory '*'
-
-ENV QT_BASE_DIR=/opt/qt6.4-static
-
-ENV PATH="${QT_BASE_DIR}/bin:${PATH}"
 
 COPY init.sh /init.sh
 
