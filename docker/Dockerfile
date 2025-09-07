@@ -55,10 +55,6 @@ RUN wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/
 
 RUN git config --global --replace-all safe.directory '*'
 
-ENV QT_BASE_DIR=/opt/qt6.4-static
-
-ENV PATH="${QT_BASE_DIR}/bin:${PATH}"
-
 COPY init.sh /init.sh
 
 ENTRYPOINT ["/init.sh"]
