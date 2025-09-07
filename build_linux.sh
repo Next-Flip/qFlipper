@@ -9,6 +9,7 @@ APPDIR_PREFIX="$PWD/$BUILDDIR/AppDir/usr"
 LIBSSL3_OVERRIDE="$(ldconfig -p | grep x86-64 | grep -oP '/[^\s]+/libssl.so.3' | head -n1)"
 
 export OUTPUT="$TARGET-x86_64.AppImage"
+export QML_SOURCES_PATHS="$PWD/application"
 
 mkdir -p "$BUILDDIR" && cd "$BUILDDIR"
 
