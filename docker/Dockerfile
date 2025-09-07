@@ -46,7 +46,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt -y install \
     qt6-shadertools-dev \
     qt6-svg-dev \
     qt6-tools-dev \
-    qt6-5compat-dev
+    qt6-5compat-dev \
+    qml6-module-qtqml \
+    qml6-module-qtquick \
+    qml6-module-qtcore
 
 RUN wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20250213-2/linuxdeploy-x86_64.AppImage \
     -O /usr/bin/linuxdeploy && chmod +x /usr/bin/linuxdeploy
