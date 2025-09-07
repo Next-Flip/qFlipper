@@ -17,7 +17,7 @@ export OUTPUT="$TARGET-x86_64.AppImage"
 
 mkdir -p "$BUILDDIR" && cd "$BUILDDIR"
 
-qmake "../$TARGET.pro" -spec linux-g++ "CONFIG+=release qtquickcompiler" PREFIX="$APPDIR_PREFIX"
+qmake6 "../$TARGET.pro" -spec linux-g++ "CONFIG+=release qtquickcompiler" PREFIX="$APPDIR_PREFIX"
 make qmake_all
 make -j"$(nproc)"
 make install
