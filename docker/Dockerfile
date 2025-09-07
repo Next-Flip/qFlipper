@@ -47,10 +47,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt -y install \
     qt6-tools-dev \
     qt6-5compat-dev
 
-RUN wget https://update.flipperzero.one/builds/misc/linuxdeploy-x86_64-29092022.AppImage \
+RUN wget https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20250213-2/linuxdeploy-x86_64.AppImage \
     -O /usr/bin/linuxdeploy && chmod +x /usr/bin/linuxdeploy
 
-RUN wget https://update.flipperzero.one/builds/misc/linuxdeploy-plugin-qt-x86_64-29092022.AppImage \
+RUN wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/1-alpha-20250213-1/linuxdeploy-plugin-qt-x86_64.AppImage \
     -O /usr/bin/linuxdeploy-plugin-qt && chmod +x /usr/bin/linuxdeploy-plugin-qt
 
 RUN git config --global --replace-all safe.directory '*'
