@@ -10,6 +10,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y \
     pkg-config \
     git \
     curl \
+    fuse \
     libfuse2 \
     zlib1g-dev \
     libusb-1.0-0-dev \
