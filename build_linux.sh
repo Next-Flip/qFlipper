@@ -8,11 +8,6 @@ APPDIR_PREFIX="$PWD/$BUILDDIR/AppDir/usr"
 
 LIBSSL3_OVERRIDE="$(ldconfig -p | grep x86-64 | grep -oP '/[^\s]+/libssl.so.3' | head -n1)"
 
-LIBWAYLAND_EXCLUDE="libwayland*"
-LIBXCB_EXCLUDE="libxcb*"
-LIBXKB_EXCLUDE="libxkb*"
-LIBX11_EXCLUDE="libX*"
-
 export OUTPUT="$TARGET-x86_64.AppImage"
 
 mkdir -p "$BUILDDIR" && cd "$BUILDDIR"
@@ -24,8 +19,4 @@ make install
 
 linuxdeploy --appdir=AppDir -o appimage \
     --custom-apprun="../installer-assets/appimage/AppRun" \
-    --library="$LIBSSL3_OVERRIDE" \
-    --exclude-library="$LIBWAYLAND_EXCLUDE" \
-    --exclude-library="$LIBXCB_EXCLUDE" \
-    --exclude-library="$LIBXKB_EXCLUDE" \
-    --exclude-library="$LIBX11_EXCLUDE"
+    --library="$LIBSSL3_OVERRIDE"
